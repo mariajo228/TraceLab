@@ -3,8 +3,7 @@
 Proyecto final de **Procesamiento Digital de Imágenes** (2026-2).
 Tema: *Análisis de la Expresión Humana en el Arte y la Cultura*.
 
-> **Integrantes:** `[COMPLETAR: nombres]` · **Docente:** Nicolas Llanos Neuta
-> **Video demostrativo (máx. 3 min):** `[COMPLETAR: enlace]` · **Póster:** `[COMPLETAR: enlace o archivo]` · **Datos:** `[COMPLETAR: enlace de Drive]`
+> **Integrantes:** `Maria Jose Asprilla y Mariana Rengifo` · **Docente:** Nicolas Llanos Neuta.
 
 ---
 
