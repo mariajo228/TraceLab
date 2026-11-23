@@ -126,16 +126,9 @@ Para Google Colab y para reproducir la evaluación: [`docs/INSTRUCCIONES_EJECUCI
 
 ## 5. Interfaz gráfica de usuario
 
-La interfaz está hecha con Streamlit y guía el reto en seis pantallas, con una barra de progreso en la parte superior.
+Interfaz en Streamlit que guía el reto en seis pantallas:
 
-| # | Pantalla | Qué hace la persona |
-|---|---|---|
-| 1 | **Inicio** | Lee la propuesta (observar, reproducir, descubrir) y pulsa *Comenzar experiencia*. |
-| 2 | **Modalidad** | Elige **Mandalas** o **Siluetas**. |
-| 3 | **Nivel** | Elige fácil (10 s), intermedio (15 s) o difícil (20 s) de observación. |
-| 4 | **Observación** | Pulsa *Mostrar imagen*; un reto al azar del banco `reto` aparece con cuenta regresiva y **desaparece** al terminar. |
-| 5 | **Dibujo** | Sube su dibujo (JPG, JPEG o PNG), hecho en papel o en digital. Puede autorizar, de forma opcional, el guardado anónimo. |
-| 6 | **Resultados** | Ve el porcentaje de similitud, la comparación de imágenes, el mapa de diferencias y la explicación. |
+**Inicio → Modalidad (mandalas / siluetas) → Nivel (10 / 15 / 20 s) → Observación (la imagen desaparece al terminar el tiempo) → Dibujo (subir JPG o PNG) → Resultados**
 
 **Pantalla de resultados:** muestra la similitud visual con su categoría y una barra de progreso, las tres imágenes lado a lado (original, reproducción y mapa de diferencias), la leyenda de colores y un texto que explica cobertura, precisión, proporciones y trazos faltantes o añadidos. Un desplegable muestra cómo se calcula el puntaje (trazos 50 %, Chamfer 30 %, SSIM 20 %).
 
