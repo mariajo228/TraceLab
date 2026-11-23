@@ -1,8 +1,8 @@
 import random
 import time
-import uuid
-
 from pathlib import Path
+from datetime import datetime
+from uuid import uuid4
 
 import pandas as pd
 import streamlit as st
@@ -103,8 +103,8 @@ def elegir_reto(modalidad, nivel):
 
     if retos is None:
         st.error(
-            "No se encontró division_dataset.csv. "
-            "Ejecuta la sección 2 del notebook."
+            "No se encontró division_dataset_v2.csv. "
+            "Ejecuta scripts/generar_division.py (o la sección 2 del notebook)."
         )
         st.stop()
 
@@ -118,27 +118,6 @@ def elegir_reto(modalidad, nivel):
         st.stop()
 
     return random.choice(rutas)
-
-
-def guardar_dibujo(archivo, modalidad, ref):
-    """Guarda el dibujo subido en Dataset/dibujos_usuarios/<modalidad>/ (solo con consentimiento).
-
-    Nombre: <original>__<participante>.<ext>, como espera la sección 6 del notebook.
-    """
-    try:
-        if "participante" not in st.session_state:
-            st.session_state.participante = "p" + uuid.uuid4().hex[:4]
-        carpeta = DATASET / "dibujos_usuarios" / modalidad
-        carpeta.mkdir(parents=True, exist_ok=True)
-        original = Path(ref).stem
-        ext = Path(archivo.name).suffix.lower() or ".jpg"
-        n = len(list(carpeta.glob(f"{original}__{st.session_state.participante}*"))) + 1
-        sufijo = "" if n == 1 else f"_{n}"
-        destino = carpeta / f"{original}__{st.session_state.participante}{sufijo}{ext}"
-        destino.write_bytes(archivo.getvalue())
-        return destino
-    except Exception:
-        return None
 
 
 def encabezado():
@@ -381,6 +360,7 @@ elif pantalla == "observacion":
         ir("carga")
 
 
+
 # ---------------------------------------------------------
 # 10. CARGA DEL DIBUJO
 # ---------------------------------------------------------
@@ -413,6 +393,11 @@ elif pantalla == "carga":
         type=["jpg", "jpeg", "png"]
     )
 
+    consentimiento = st.checkbox(
+        "Autorizo que mi dibujo se almacene de forma anónima "
+        "para las pruebas académicas del proyecto TraceLab."
+    )
+
     if archivo is not None:
 
         st.markdown("### Vista previa de tu dibujo")
@@ -421,12 +406,6 @@ elif pantalla == "carga":
             archivo,
             caption="Imagen cargada",
             width=420
-        )
-
-        consentimiento = st.checkbox(
-            "Autorizo guardar mi dibujo de forma anónima para evaluar el proyecto "
-            "(opcional).",
-            key="consentimiento"
         )
 
         if st.button(
@@ -447,11 +426,98 @@ elif pantalla == "carga":
                         foto=True
                     )
 
+                # -----------------------------------------
+                # GUARDADO OPCIONAL DE DIBUJO Y METADATOS
+                # -----------------------------------------
+
                 if consentimiento:
-                    guardar_dibujo(
-                        archivo,
-                        st.session_state.modalidad,
+
+                    # Carpeta de dibujos según modalidad
+                    carpeta_dibujos = (
+                        Path(DATASET)
+                        / "dibujos_usuarios"
+                        / st.session_state.modalidad
+                    )
+                    carpeta_dibujos.mkdir(
+                        parents=True,
+                        exist_ok=True
+                    )
+
+                    # Carpeta de resultados experimentales
+                    carpeta_resultados = (
+                        Path(DATASET).parent / "resultados"
+                    )
+                    carpeta_resultados.mkdir(
+                        parents=True,
+                        exist_ok=True
+                    )
+
+                    # Identificador anónimo
+                    participante = (
+                        f"p{uuid4().int % 100000000:08d}"
+                    )
+
+                    # Nombre basado en la imagen de referencia
+                    nombre_original = Path(
                         st.session_state.ref
+                    ).stem
+
+                    extension = Path(archivo.name).suffix.lower()
+
+                    if extension not in [".jpg", ".jpeg", ".png"]:
+                        extension = ".jpg"
+
+                    nombre_dibujo = (
+                        f"{nombre_original}__{participante}{extension}"
+                    )
+
+                    ruta_dibujo = (
+                        carpeta_dibujos / nombre_dibujo
+                    )
+
+                    # Guardar imagen original cargada
+                    ruta_dibujo.write_bytes(archivo.getvalue())
+
+                    # Obtener métricas del análisis
+                    metricas = res["metricas"]
+
+                    registro = {
+                        "participante": participante,
+                        "fecha": datetime.now().astimezone().isoformat(
+                            timespec="seconds"
+                        ),
+                        "modalidad": st.session_state.modalidad,
+                        "nivel": st.session_state.nivel,
+                        "referencia": st.session_state.ref,
+                        "archivo": nombre_dibujo,
+                        "puntaje": res["puntaje"],
+                        "categoria": categoria(res["puntaje"]),
+                        "precision": metricas["precision"],
+                        "cobertura": metricas["cobertura"],
+                        "f_trazos": metricas["f_trazos"],
+                        "chamfer_px": metricas["chamfer_px"],
+                        "estructura": metricas["estructura"],
+                        "consentimiento": True
+                    }
+
+                    ruta_csv = (
+                        carpeta_resultados
+                        / "registros_participantes.csv"
+                    )
+
+                    df_registro = pd.DataFrame([registro])
+
+                    df_registro.to_csv(
+                        ruta_csv,
+                        mode="a",
+                        header=not ruta_csv.exists(),
+                        index=False,
+                        encoding="utf-8"
+                    )
+
+                    st.success(
+                        "Tu dibujo fue guardado de forma anónima. "
+                        "¡Gracias por colaborar con las pruebas!"
                     )
 
                 ir("resultados", resultado=res)
@@ -459,8 +525,15 @@ elif pantalla == "carga":
             except ValueError as e:
                 st.error(str(e))
 
+            except Exception as e:
+                st.error(
+                    f"Ocurrió un problema al procesar o guardar "
+                    f"tu dibujo: {e}"
+                )
+
     if st.button("← Volver al inicio"):
         ir("bienvenida")
+
 
 
 # ---------------------------------------------------------
@@ -596,4 +669,3 @@ st.markdown("""
     <div style="font-size:11px;color:#A195A1;margin-top:9px;">Procesamiento Digital de Imágenes · Proyecto académico</div>
 </div>
 """, unsafe_allow_html=True)
-

@@ -7,9 +7,9 @@ from skimage.metrics import structural_similarity
 
 from procesamiento import LADO, preparar
 
-TOLERANCIA = 4          # px (sobre LADO=256) para considerar que dos trazos coinciden
-ESCALA_CHAMFER = 8.0    # px: distancia media a la que el subpuntaje cae a ~37 %
-PESOS = {"trazos": 0.5, "chamfer": 0.3, "estructura": 0.2}   # valores iniciales, ajustables
+TOLERANCIA = 4
+ESCALA_CHAMFER = 8.0
+PESOS = {"trazos": 0.5, "chamfer": 0.3, "estructura": 0.2}
 ANGULOS = (-4, 0, 4)
 DESPLAZAMIENTOS = (-5, 0, 5)
 ESCALAS = (0.95, 1.0, 1.05)
@@ -62,8 +62,8 @@ def calcular_metricas(ref, dib):
         return {"precision": 0.0, "cobertura": 0.0, "f_trazos": 0.0,
                 "chamfer_px": float(LADO), "estructura": 0.0}
     d_ref, d_dib = _distancia(ref), _distancia(dib)
-    precision = float((d_ref[dib] <= TOLERANCIA).mean())    # trazos tuyos que están en el original
-    cobertura = float((d_dib[ref] <= TOLERANCIA).mean())    # trazos del original que tú dibujaste
+    precision = float((d_ref[dib] <= TOLERANCIA).mean())
+    cobertura = float((d_dib[ref] <= TOLERANCIA).mean())
     f = 2 * precision * cobertura / (precision + cobertura + 1e-9)
     chamfer = 0.5 * (float(d_ref[dib].mean()) + float(d_dib[ref].mean()))
     a = cv2.GaussianBlur(ref.astype(np.float32), (0, 0), 3)

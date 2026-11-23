@@ -7,8 +7,9 @@ import numpy as np
 from PIL import Image, ImageOps
 from skimage.morphology import skeletonize
 
-# Carpeta con Dataset/ y documentacion/. Se puede cambiar con la variable de entorno TRACELAB_RAIZ.
-RAIZ = Path(os.environ.get("TRACELAB_RAIZ", "/content/drive/MyDrive/Proyecto Final - Tracelab"))
+# Carpeta de datos. Por defecto: <repositorio>/data (misma estructura que la carpeta de Drive:
+# Dataset/, documentacion/, resultados/). Se puede cambiar con la variable TRACELAB_RAIZ.
+RAIZ = Path(os.environ.get("TRACELAB_RAIZ", Path(__file__).resolve().parent.parent / "data"))
 DATASET = RAIZ / "Dataset"
 DOCUMENTACION = RAIZ / "documentacion"
 RESULTADOS = RAIZ / "resultados"
@@ -16,11 +17,11 @@ CSV_DIVISION = DOCUMENTACION / "division_dataset_v2.csv"
 
 MODALIDADES = ["mandalas", "siluetas"]
 NIVELES = ["facil", "intermedio", "dificil"]
-TIEMPOS = {"facil": 10, "intermedio": 15, "dificil": 20}  # segundos (iniciales)
+TIEMPOS = {"facil": 10, "intermedio": 15, "dificil": 20}
 EXTENSIONES = {".jpg", ".jpeg", ".png"}
 
-LADO = 256        # lienzo de comparación (px)
-CONTENIDO = 224   # lado máximo del dibujo dentro del lienzo (deja margen)
+LADO = 256
+CONTENIDO = 224
 LADO_MAX_ENTRADA = 1600
 
 
@@ -48,17 +49,17 @@ def binarizar(gris, normalizar_fondo=False):
     """Devuelve una máscara uint8 con la tinta en 255 y el fondo en 0."""
     g = cv2.GaussianBlur(gris, (3, 3), 0)
     borde = np.concatenate([g[0, :], g[-1, :], g[:, 0], g[:, -1]])
-    if np.median(borde) < 127:      # fondo oscuro -> invertir para que la tinta sea oscura
+    if np.median(borde) < 127:
         g = 255 - g
     if normalizar_fondo:
         g = _quitar_fondo_desigual(g)
-    if g.std() < 3:                 # imagen casi uniforme: no hay trazos
+    if g.std() < 3:
         return np.zeros_like(g)
     _, bw = cv2.threshold(g, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
     _, etiquetas, stats, _ = cv2.connectedComponentsWithStats(bw, connectivity=8)
-    area_min = max(6, int(0.00005 * bw.size))   # elimina motas de ruido
+    area_min = max(6, int(0.00005 * bw.size))
     conservar = stats[:, cv2.CC_STAT_AREA] >= area_min
-    conservar[0] = False                         # etiqueta 0 = fondo
+    conservar[0] = False
     return np.where(conservar[etiquetas], 255, 0).astype(np.uint8)
 
 
@@ -81,7 +82,7 @@ def encuadrar(mascara):
     f = CONTENIDO / max(h, w)
     nuevo = cv2.resize(recorte, (max(1, round(w * f)), max(1, round(h * f))),
                        interpolation=cv2.INTER_AREA)
-    nuevo = np.where(nuevo > 40, 255, 0).astype(np.uint8)   # conserva líneas finas
+    nuevo = np.where(nuevo > 40, 255, 0).astype(np.uint8)
     h2, w2 = nuevo.shape
     y0, x0 = (LADO - h2) // 2, (LADO - w2) // 2
     lienzo[y0:y0 + h2, x0:x0 + w2] = nuevo

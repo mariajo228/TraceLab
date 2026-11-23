@@ -1,31 +1,35 @@
 # Datos de TraceLab
 
-Las imágenes **no están en este repositorio** por su tamaño. Se descargan desde el enlace indicado abajo.
+Esta carpeta replica la estructura de la carpeta de Drive del proyecto
+(`Proyecto Final - Tracelab`). **Las imágenes no se suben a GitHub**: pesan mucho, las
+siluetas tienen otro propietario en Drive y los dibujos de usuarios son datos personales.
 
-**Enlace de descarga:** `[COMPLETAR: enlace de Drive con permiso de lectura para cualquiera con el enlace]`
-**Procedencia y licencia:** `[COMPLETAR: de dónde salieron las imágenes y bajo qué permisos se comparten]`
+## Dónde descargar el dataset
 
-## Contenido
+- Dataset (1.200 imágenes): **[COMPLETAR: enlace de Drive con permiso de lectura]**
 
-| Modalidad | Fácil | Intermedio | Difícil | Total |
-|---|---|---|---|---|
-| Mandalas | 300 | 300 | 300 | 900 |
-| Siluetas | 100 | 100 | 100 | 300 |
-| **Total** | | | | **1.200** |
+## Estructura esperada
 
-Formatos: PNG y JPG.
+```
+data/
+├── Dataset/
+│   ├── mandalas/   facil/  intermedio/  dificil/   (300 imágenes por nivel)
+│   ├── siluetas/   facil/  intermedio/  dificil/   (100 imágenes por nivel)
+│   └── dibujos_usuarios/<modalidad>/               (se crea sola si el usuario consiente guardar)
+├── documentacion/
+│   └── division_dataset_v2.csv                     (partición train/val/test/reto)
+└── resultados/
+    └── registros_participantes.csv                 (se crea sola; NO se versiona)
+```
 
-## División (semilla 42)
+## Cómo obtener `division_dataset_v2.csv`
 
-| Conjunto | Imágenes | Uso |
-|---|---|---|
-| train | 600 | explorar y diseñar el comparador |
-| val | 180 | explorar parámetros (tolerancia, pesos) |
-| test | 180 | evaluación final, usada una sola vez |
-| reto | 240 | banco de imágenes que ve el usuario en la app |
+- **Opción A:** copiar el archivo original desde Drive (`documentacion/`) a `data/documentacion/`.
+- **Opción B:** generarlo con `python scripts/generar_division.py` (semilla 42, umbral Hamming 69).
 
-La división es estratificada por modalidad y nivel. Antes de dividir se agruparon los casi duplicados (dHash 32×32, distancia de Hamming ≤ 69) y cada grupo quedó completo en un mismo conjunto. El archivo `division_dataset_v2.csv` registra la asignación de cada imagen.
+Con otra ubicación para los datos, define la variable de entorno `TRACELAB_RAIZ`
+apuntando a la carpeta que contiene `Dataset/`, `documentacion/` y `resultados/`.
 
-## Dibujos de personas
+## Nombres de los dibujos de usuarios
 
-Los dibujos que las personas suben en la app se guardan **solo con consentimiento**, de forma anónima (`<imagen>__<código>.jpg`) y en la carpeta `Dataset/dibujos_usuarios/`. Esa carpeta está excluida del repositorio (`.gitignore`) para proteger la privacidad.
+`<original_sin_extensión>__<participante>.<ext>`, por ejemplo `mandala_facil_004__p01234567.png`.
