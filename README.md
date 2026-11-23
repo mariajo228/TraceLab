@@ -71,8 +71,6 @@ Más detalle en [`data/README.md`](data/README.md).
 Pantallas: inicio → modalidad → nivel → observación (cuenta regresiva) → carga del dibujo → resultados.
 
 | Observación | Resultado | Mapa de diferencias |
-|---|---|---|
-| ![Observación](docs/img/gui_observacion.jpg) | ![Resultado](docs/img/gui_resultado.jpg) | ![Mapa](docs/img/gui_mapa_diferencias.jpg) |
 
 **Cómo usarla**
 1. Pulsa *Comenzar*, elige **Mandalas** o **Siluetas** y un nivel.
