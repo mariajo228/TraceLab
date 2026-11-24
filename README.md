@@ -168,32 +168,6 @@ Las siluetas se separan casi por completo; los mandalas difíciles son el caso m
 
 ---
 
-## 7. Puntajes por tipo de alteración
-
-Cada imagen de `val` se altera de 10 maneras y se compara con su original (15 imágenes por modalidad y nivel, 45 por modalidad y tipo). Puntaje en %:
-
-| Alteración | Qué simula | Mandalas (media ± desv.) | Mín. | Siluetas (media ± desv.) | Mín. |
-|---|---|---|---|---|---|
-| Idéntica | Misma imagen | 100,0 ± 0,0 | 100,0 | 100,0 ± 0,0 | 100,0 |
-| Ruido | Ruido gaussiano (σ = 25) | 99,4 ± 0,6 | 97,8 | 99,8 ± 0,3 | 98,7 |
-| Escala pequeña | Dibujo reducido al 60 % | 97,7 ± 1,5 | 90,1 | 99,3 ± 0,5 | 97,6 |
-| Rotado | Giro aleatorio de ±6° | 96,7 ± 1,6 | 92,9 | 93,5 ± 3,6 | 80,5 |
-| Desplazado | Corrimiento de hasta ±5 % | 95,0 ± 4,0 | 81,6 | 99,6 ± 0,4 | 98,2 |
-| Trazos omitidos | 3 zonas borradas | 93,9 ± 2,5 | 85,1 | 92,3 ± 7,5 | 51,7 |
-| Trazo grueso | Líneas más gruesas | 92,9 ± 4,3 | 75,0 | 93,9 ± 2,9 | 85,5 |
-| Temblor | Deformación suave del trazo | 77,9 ± 3,4 | 70,8 | 79,0 ± 5,1 | 68,8 |
-| Combinado | Desplazado + escala + temblor + trazo grueso | 66,8 ± 5,7 | 48,4 | 68,9 ± 6,6 | 46,3 |
-| Escala grande | Dibujo ampliado al 120 % | 61,3 ± 10,1 | 43,5 | 93,7 ± 1,5 | 89,4 |
-| **Otra imagen** (control negativo) | Imagen distinta | **58,6 ± 9,3** | 33,4 | **36,2 ± 12,5** | 15,5 |
-
-**Lectura:**
-- El comparador es muy robusto a ruido, cambios de tamaño hacia abajo, giros leves, desplazamientos, trazo grueso y omisiones (puntajes de 92 % o más en promedio).
-- El **temblor** y las alteraciones **combinadas** bajan el puntaje a 67–79 %, algo esperable porque cambian la forma de los trazos.
-- En mandalas, **escala grande** cae a 61,3 %, mientras que en siluetas se mantiene en 93,7 %. Hipótesis: al ampliar al 120 % sobre el mismo lienzo, parte del contenido sale del cuadro y se pierde; en las siluetas, que tienen más margen, no ocurre. Está pendiente de verificar.
-- En mandalas el control negativo promedia 58,6 % y llega hasta 75,5 %, así que **el rango de "imagen distinta" se solapa con el de alteraciones fuertes**.
-
-![Ejemplos de alteraciones sintéticas](results/figuras/ejemplos_perturbaciones.png)
-
 ---
 **Interfaz de la aplicación TraceLab**
 
