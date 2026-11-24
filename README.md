@@ -115,7 +115,7 @@ Para Google Colab y para reproducir la evaluación: [`docs/INSTRUCCIONES_EJECUCI
 
 ---
 
-## 5. Resultados
+## 3. Resultados
 
 La evaluación usa reproducciones **sintéticas** (simuladas por computador) porque, al momento de diseñar el comparador, no existían dibujos humanos. Sirven para comprobar robustez y que el método distingue una imagen distinta; **no** sustituyen la validación con personas. Protocolo: se ajustan parámetros con `val` y se evalúa una sola vez en `test`.
 
