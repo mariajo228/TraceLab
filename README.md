@@ -195,7 +195,15 @@ Cada imagen de `val` se altera de 10 maneras y se compara con su original (15 im
 ![Ejemplos de alteraciones sintéticas](results/figuras/ejemplos_perturbaciones.png)
 
 ---
+Interfaz de la aplicación TraceLab
 
+1. Pantalla de inicio
+![Pantalla de inicio](Evidencias/Imágenes/IMG_1562.jpeg)
+2. Selección de modalidad
+![Selección de modalidad](Evidencias/Imágenes/IMG_1563.jpeg)
+3. Selección de niveles
+![Selección de niveles](Evidencias/Imágenes/IMG_1564.jpeg)
+⸻
 ## 8. Ejemplo con un dibujo real
 
 Reproducción hecha a mano por una persona (lápiz sobre papel, fotografiada con celular) de un atrapasueños, procesada con la app con la opción de fotografía activada.
