@@ -121,7 +121,7 @@ Interfaz en Streamlit que guía el reto en seis pantallas:
 
 **Pantalla de resultados:** muestra la similitud visual con su categoría y una barra de progreso, las tres imágenes lado a lado (original, reproducción y mapa de diferencias), la leyenda de colores y un texto que explica cobertura, precisión, proporciones y trazos faltantes o añadidos. Un desplegable muestra cómo se calcula el puntaje (trazos 50 %, Chamfer 30 %, SSIM 20 %).
 
-![Pantalla de resultados](docs/img/06_resultados.png)
+![Pantalla de resultados](C:\Users\maria\OneDrive\Desktop\interfaz 1 .png)
 
 Si la persona sube una **fotografía** de su dibujo, la app aplica corrección de iluminación para reducir sombras. Recomendaciones: buena luz, dibujo completo en el encuadre, trazo oscuro sobre fondo claro.
 
