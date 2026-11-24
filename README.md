@@ -4,6 +4,7 @@ Proyecto final de **Procesamiento Digital de Imágenes** (2026-2). Tema: *Análi
 
 > **Integrantes:** Maria Jose Asprilla y Mariana Rengifo · **Docente:** Nicolas Llanos Neuta
 > Enlace del poster : https://canva.link/xxmuiqoa05um49w
+> 
 > Enlace del video :https://youtu.be/eNU_SCfUEzM?feature=shared
 
 ---
