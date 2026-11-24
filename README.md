@@ -111,25 +111,11 @@ pip install -r requirements.txt
 
 Para Google Colab y para reproducir la evaluación: [`docs/INSTRUCCIONES_EJECUCION.md`](docs/INSTRUCCIONES_EJECUCION.md).
 
----
 
-## 5. Interfaz gráfica de usuario
-
-Interfaz en Streamlit que guía el reto en seis pantallas:
-
-**Inicio → Modalidad (mandalas / siluetas) → Nivel (10 / 15 / 20 s) → Observación (la imagen desaparece al terminar el tiempo) → Dibujo (subir JPG o PNG) → Resultados**
-
-**Pantalla de resultados:** muestra la similitud visual con su categoría y una barra de progreso, las tres imágenes lado a lado (original, reproducción y mapa de diferencias), la leyenda de colores y un texto que explica cobertura, precisión, proporciones y trazos faltantes o añadidos. Un desplegable muestra cómo se calcula el puntaje (trazos 50 %, Chamfer 30 %, SSIM 20 %).
-
-![Pantalla de resultados]( )
-
-Si la persona sube una **fotografía** de su dibujo, la app aplica corrección de iluminación para reducir sombras. Recomendaciones: buena luz, dibujo completo en el encuadre, trazo oscuro sobre fondo claro.
-
-Guía paso a paso con capturas de cada pantalla: [`docs/GUIA_GUI.md`](docs/GUIA_GUI.md).
 
 ---
 
-## 6. Resultados
+## 5. Resultados
 
 La evaluación usa reproducciones **sintéticas** (simuladas por computador) porque, al momento de diseñar el comparador, no existían dibujos humanos. Sirven para comprobar robustez y que el método distingue una imagen distinta; **no** sustituyen la validación con personas. Protocolo: se ajustan parámetros con `val` y se evalúa una sola vez en `test`.
 
@@ -169,7 +155,7 @@ Las siluetas se separan casi por completo; los mandalas difíciles son el caso m
 ---
 
 ---
-**Interfaz de la aplicación TraceLab**
+**6.Interfaz de la aplicación TraceLab**
 
 **1. Pantalla de inicio**
 ![Pantalla de inicio](Evidencias/Imágenes/IMG_1562.jpeg)
@@ -178,7 +164,7 @@ Las siluetas se separan casi por completo; los mandalas difíciles son el caso m
 **3. Selección de niveles**
 ![Selección de niveles](Evidencias/Imágenes/IMG_1564.jpeg)
 ⸻
-## 8. Ejemplo con un dibujo real
+## 7. Ejemplo con un dibujo real
 
 Reproducción hecha a mano por una persona (lápiz sobre papel, fotografiada con celular) de un atrapasueños, procesada con la app con la opción de fotografía activada.
 
@@ -201,7 +187,7 @@ Reproducción hecha a mano por una persona (lápiz sobre papel, fotografiada con
 
 ---
 
-## 9. Conclusiones y limitaciones
+## 8. Conclusiones y limitaciones
 
 ### Conclusiones
 
