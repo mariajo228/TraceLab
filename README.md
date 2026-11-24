@@ -172,9 +172,9 @@ Reproducción hecha a mano por una persona (lápiz sobre papel, fotografiada con
 
 | Dato | Valor |
 |---|---|
-| Modalidad y nivel | [COMPLETAR] |
+| Modalidad y nivel | **siuetas,Intermedio** |
 | Similitud visual | **55,2 %** |
-| Categoría | **Intermedia** |
+
 
 **Qué se observa en el mapa de diferencias:**
 - Hay **coincidencia (verde)** en zonas del centro de la flor, parte de los pétalos y de las plumas inferiores: la persona recordó la composición general (círculo con flor, hilos y tres plumas).
