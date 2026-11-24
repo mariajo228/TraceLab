@@ -207,7 +207,7 @@ Reproducción hecha a mano por una persona (lápiz sobre papel, fotografiada con
 - **Alineación limitada.** La alineación fina cubre cambios pequeños (±4°, ±5 px, ±5 %); el encuadre absorbe el resto, pero no corrige deformaciones locales.
 - **Alcance del puntaje.** Mide similitud visual de trazos y estructura; no mide memoria, inteligencia ni calidad artística.
 
-### Trabajo futuro
+## 9. Trabajo futuro
 
 Recolectar dibujos reales con consentimiento y valoraciones humanas de 1 a 5; recalibrar pesos, tolerancia y categorías con ellos; recalcular el AUC sin la alteración "idéntica"; mejorar la robustez a deformaciones locales; y evaluar un modelo aprendido (por ejemplo, una red siamesa) cuando existan suficientes pares reales.
 
