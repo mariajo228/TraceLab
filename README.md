@@ -3,21 +3,8 @@
 Proyecto final de **Procesamiento Digital de Imágenes** (2026-2). Tema: *Análisis de la Expresión Humana en el Arte y la Cultura*.
 
 > **Integrantes:** Maria Jose Asprilla y Mariana Rengifo · **Docente:** Nicolas Llanos Neuta
-
----
-
-## Índice
-
-1. [Descripción del proyecto](#1-descripción-del-proyecto)
-2. [Dataset y partición](#2-dataset-y-partición)
-3. [Metodología](#3-metodología)
-4. [Estructura del repositorio e instalación](#4-estructura-del-repositorio-e-instalación)
-5. [Interfaz gráfica de usuario](#5-interfaz-gráfica-de-usuario)
-6. [Resultados](#6-resultados)
-7. [Puntajes por tipo de alteración](#7-puntajes-por-tipo-de-alteración)
-8. [Ejemplo con un dibujo real](#8-ejemplo-con-un-dibujo-real)
-9. [Conclusiones y limitaciones](#9-conclusiones-y-limitaciones)
-10. [Privacidad](#10-privacidad)
+> Enlace del poster : https://canva.link/xxmuiqoa05um49w
+> Enlace del video :https://youtu.be/eNU_SCfUEzM?feature=shared
 
 ---
 
