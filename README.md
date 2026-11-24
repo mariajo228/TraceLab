@@ -115,7 +115,7 @@ Para Google Colab y para reproducir la evaluación: [`docs/INSTRUCCIONES_EJECUCI
 
 ---
 
-## 3. Resultados
+## 5. Resultados
 
 La evaluación usa reproducciones **sintéticas** (simuladas por computador) porque, al momento de diseñar el comparador, no existían dibujos humanos. Sirven para comprobar robustez y que el método distingue una imagen distinta; **no** sustituyen la validación con personas. Protocolo: se ajustan parámetros con `val` y se evalúa una sola vez en `test`.
 
@@ -155,7 +155,7 @@ Las siluetas se separan casi por completo; los mandalas difíciles son el caso m
 ---
 
 ---
-**6.Interfaz de la aplicación TraceLab**
+## 5. Interfaz de la aplicación TraceLab
 
 **1. Pantalla de inicio**
 ![Pantalla de inicio](Evidencias/Imágenes/IMG_1562.jpeg)
@@ -164,7 +164,7 @@ Las siluetas se separan casi por completo; los mandalas difíciles son el caso m
 **3. Selección de niveles**
 ![Selección de niveles](Evidencias/Imágenes/IMG_1564.jpeg)
 ⸻
-## 7. Ejemplo con un dibujo real
+## 6. Ejemplo con un dibujo real
 
 Reproducción hecha a mano por una persona (lápiz sobre papel, fotografiada con celular) de un atrapasueños, procesada con la app con la opción de fotografía activada.
 
@@ -187,7 +187,7 @@ Reproducción hecha a mano por una persona (lápiz sobre papel, fotografiada con
 
 ---
 
-## 8. Conclusiones y limitaciones
+## 7. Conclusiones y limitaciones
 
 ### Conclusiones
 
